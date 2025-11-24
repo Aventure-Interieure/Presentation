@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  background: linear-gradient(120deg, #0f2027, #2c5364);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.flyer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: #fff4;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 40px #0004;
+  perspective: 1500px;
+}
+
+button {
+  border: none;
+  background: #406a77;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px #0002;
+  transition: background 0.2s, transform 0.3s;
+}
+
+button:hover {
+  background: #18b3c8;
+  transform: scale(1.1);
+}
+
+.flip-container {
+  width: 50vw;  /* Affiche une seule image à la fois */
+  height: 80vh; /* Hauteur de l'image */
+  p
