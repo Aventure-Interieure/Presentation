@@ -16,227 +16,66 @@
       --max-width: 1200px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html, body { overflow-x:hidden; }
+    body { font-family:'Montserrat', sans-serif; background:#111; color:white; line-height:1.5; }
+
+    /* HEADER */
+    header { position: fixed; top:0; width:100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index:1000; }
+    nav { max-width: var(--max-width); margin:auto; padding:1rem; display:flex; justify-content:space-between; align-items:center; }
+    nav strong { font-weight:700; }
+    .nav-links { display:flex; gap:1.5rem; }
+    .nav-links a { color:white; text-decoration:none; font-weight:600; }
+    .nav-links a.active { color:var(--red); }
+    .burger { display:none; font-size:1.8rem; cursor:pointer; }
+
+    /* HERO */
+    .hero { margin-top:70px; position:relative; }
+    .hero img { width:100%; display:block; }
+    .hero-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:1.5rem; background:rgba(0,0,0,0.35); }
+    .hero-content { max-width:700px; }
+    .hero-content h1 { font-size:2.5rem; line-height:1.2; }
+    .separator { width:80px; height:2px; background:var(--red); margin:1rem auto; }
+    .hero-content p { font-size:1.2rem; }
+    .btn { margin-top:2rem; background:var(--red); color:white; padding:0.9rem 2.2rem; border-radius:40px; font-weight:600; text-decoration:none; display:inline-block; transition:all 0.2s ease; box-shadow:0 6px 0 var(--red-dark); }
+    .btn:hover { background:var(--red-dark); transform:translateY(4px); box-shadow:0 2px 0 #700000; }
+
+    /* FULL IMAGE */
+    .full-image img { width:100%; display:block; }
+
+    /* CONTACT */
+    #contact { padding:3rem 1rem; background:#111; color:white; }
+    .contact-container { 
+      max-width: var(--max-width); 
+      margin:auto; 
+      display:flex; 
+      gap:2rem; 
+      align-items:center; /* <-- centre vertical */
+      flex-wrap:wrap; 
     }
+    .contact-left, .contact-center, .contact-right { display:flex; flex-direction:column; justify-content:center; }
+    .contact-left img { max-width:180px; }
+    .contact-center { text-align:center; flex:1; }
+    .contact-center a { color:white; text-decoration:underline; }
+    .contact-right { display:flex; gap:0.5rem; }
+    .map-wrapper { display:flex; gap:0.5rem; align-items:center; }
+    .map-wrapper iframe { width:360px; height:180px; border:0; border-radius:6px; flex-shrink:0; }
+    .map-wrapper .photos { display:flex; flex-direction:column; gap:0.5rem; height:180px; justify-content:center; }
+    .map-wrapper .photos img { width:auto; height:50%; object-fit:contain; border-radius:4px; }
 
-    html, body {
-      overflow-x: hidden;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #111;
-      color: white;
-      line-height: 1.5;
-    }
-
-    /* ================= HEADER ================= */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-      z-index: 1000;
-    }
-
-    nav {
-      max-width: var(--max-width);
-      margin: auto;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav strong {
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .nav-links a.active {
-      color: var(--red);
-    }
-
-    /* ===== Hamburger ===== */
-    .burger {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* ================= HERO ================= */
-    .hero {
-      margin-top: 70px;
-      position: relative;
-    }
-
-    .hero img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1.5rem;
-      background: rgba(0,0,0,0.35);
-    }
-
-    .hero-content {
-      max-width: 700px;
-    }
-
-    .hero-content h1 {
-      font-size: 2.5rem;
-      line-height: 1.2;
-    }
-
-    .separator {
-      width: 80px;
-      height: 2px;
-      background: var(--red);
-      margin: 1rem auto;
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
-    }
-
-    .btn {
-      margin-top: 2rem;
-      background: var(--red);
-      color: white;
-      padding: 0.9rem 2.2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s ease;
-      box-shadow: 0 6px 0 var(--red-dark);
-    }
-
-    .btn:hover {
-      background: var(--red-dark);
-      transform: translateY(4px);
-      box-shadow: 0 2px 0 #700000;
-    }
-
-    /* ================= IMAGE ================= */
-    .full-image img {
-      width: 100%;
-      display: block;
-    }
-
-    /* ================= CONTACT ================= */
-    #contact {
-      padding: 3rem 1rem;
-      background: #111;
-    }
-
-    .contact-container {
-      max-width: var(--max-width);
-      margin: auto;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .contact-left img {
-      max-width: 180px;
-    }
-
-    .contact-center {
-      text-align: center;
-    }
-
-    .contact-center a {
-      color: white;
-      text-decoration: underline;
-    }
-
-    .contact-right iframe {
-      width: 360px;
-      height: 180px;
-      border: 0;
-      border-radius: 6px;
-    }
-
-    /* ================= MOBILE ================= */
-    @media (max-width: 1024px) {
-
-      .burger {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(0,0,0,0.95);
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 2rem 0;
-        transform: translateY(-120%);
-        transition: transform 0.3s ease;
-      }
-
-      .nav-links.open {
-        transform: translateY(0);
-      }
-
-      .hero-overlay {
-        position: static;
-        background: none;
-      }
-
-      .hero-content h1 {
-        font-size: 1.8rem;
-      }
-
-      .hero-content p {
-        font-size: 1rem;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 260px;
-      }
-
-      .contact-container {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-left img,
-      .contact-right iframe {
-        margin: auto;
-      }
-
-      .contact-right iframe {
-        width: 100%;
-        max-width: 360px;
-      }
+    /* MOBILE */
+    @media (max-width:1024px) {
+      .burger { display:block; }
+      .nav-links { position:absolute; top:100%; left:0; width:100%; background:rgba(0,0,0,0.95); flex-direction:column; align-items:center; gap:1.5rem; padding:2rem 0; transform:translateY(-120%); transition:transform 0.3s ease; }
+      .nav-links.open { transform:translateY(0); }
+      .hero-overlay { position:static; background:none; }
+      .hero-content h1 { font-size:1.8rem; }
+      .hero-content p { font-size:1rem; }
+      .btn { width:100%; max-width:260px; }
+      .contact-container { flex-direction:column; align-items:center; }
+      .map-wrapper { flex-direction:column; gap:1rem; }
+      .map-wrapper .photos { flex-direction:row; height:auto; }
+      .map-wrapper .photos img { width:50%; height:auto; }
     }
   </style>
 </head>
@@ -246,9 +85,7 @@
 <header>
   <nav>
     <strong>L'Aventure Intérieure</strong>
-
     <div class="burger" onclick="toggleMenu()">☰</div>
-
     <div class="nav-links" id="menu">
       <a href="index.html" class="active">Accueil</a>
       <a href="concept.html">Concept</a>
@@ -260,7 +97,6 @@
 
 <section class="hero">
   <img src="assets/I1.png" alt="Aventure immersive">
-
   <div class="hero-overlay">
     <div class="hero-content">
       <h1>
@@ -268,11 +104,9 @@
         immergez-vous dans l'aventure<br>
         que vous avez choisie
       </h1>
-
       <div class="separator"></div>
       <p>Un cadeau à vous faire, ou à offrir</p>
       <div class="separator"></div>
-
       <a href="concept.html" class="btn">Visite guidée</a>
     </div>
   </div>
@@ -287,7 +121,6 @@
     <div class="contact-left">
       <img src="assets/I3.png" alt="Bon cadeau">
     </div>
-
     <div class="contact-center">
       <h2>Contact & Réservation</h2>
       <p>
@@ -296,20 +129,20 @@
         Email : <a href="mailto:philippe.winkin@gmail.com">philippe.winkin@gmail.com</a>
       </p>
     </div>
-
     <div class="contact-right">
-      <iframe
-        src="https://www.google.com/maps?q=27%20rue%20des%20imprimeurs%204801%20Stembert&output=embed"
-        loading="lazy">
-      </iframe>
+      <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps?q=27%20rue%20des%20imprimeurs%204801%20Stembert&output=embed" loading="lazy"></iframe>
+        <div class="photos">
+          <img src="assets/F1.jpg" alt="Photo F1">
+          <img src="assets/F2.jpg" alt="Photo F2">
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  function toggleMenu() {
-    document.getElementById('menu').classList.toggle('open');
-  }
+  function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
 </script>
 
 </body>

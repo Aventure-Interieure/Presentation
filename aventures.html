@@ -1,314 +1,99 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mes aventures – L'Aventure Intérieure</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mes aventures – L'Aventure Intérieure</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --red: #d60000;
-      --red-dark: #a80000;
-      --black: #111;
-      --white: #fff;
-      --max-width: 1200px;
-    }
+<style>
+:root {
+  --red: #d60000;
+  --red-dark: #a80000;
+  --black: #111;
+  --white: #fff;
+  --max-width: 1200px;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { overflow-x:hidden; }
+body { font-family:'Montserrat', sans-serif; background:#fff; color:#111; line-height:1.6; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+/* HEADER */
+header { position: fixed; top:0; width:100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index:1000; }
+nav { max-width: var(--max-width); margin:auto; padding:1rem; display:flex; justify-content:space-between; align-items:center; color:white; }
+nav strong { font-weight:700; }
+.nav-links { display:flex; gap:1.5rem; }
+.nav-links a { color:white; text-decoration:none; font-weight:600; }
+.nav-links a.active { color:var(--red); }
+.burger { display:none; font-size:1.8rem; cursor:pointer; }
 
-    html, body {
-      overflow-x: hidden;
-    }
+/* BUTTON */
+.btn { background: var(--red); color:white; padding:0.9rem 2.2rem; border-radius:40px; font-weight:600; text-decoration:none; display:inline-block; transition:all 0.2s ease; box-shadow:0 6px 0 var(--red-dark); }
+.btn:hover { background: var(--red-dark); transform:translateY(4px); box-shadow:0 2px 0 #700000; }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #fff;
-      color: #111;
-      line-height: 1.6;
-    }
+/* HERO */
+.hero { margin-top:70px; position:relative; }
+.hero img { width:100%; display:block; height:auto; }
+.hero-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:1.5rem; background: rgba(0,0,0,0.35); }
+.hero-content .btn { position:absolute; right:2rem; top:2rem; }
 
-    /* ================= HEADER ================= */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-      z-index: 1000;
-    }
+/* AVENTURES */
+.aventures-section { background:#fff; padding:3rem 1rem 4rem; }
+.aventures-container { max-width:var(--max-width); margin:auto; }
+.aventures-section h1 { text-align:center; font-size:1.9rem; margin-bottom:2.5rem; color:#111; }
+.aventure { display:flex; align-items:center; justify-content:center; gap:3rem; margin-bottom:3rem; }
+.aventure:last-child { margin-bottom:0; }
+.aventure-image img { display:block; max-width:340px; width:100%; height:auto; }
+.aventure-texte { max-width:420px; text-align:center; color:#111; font-size:0.95rem; }
+.aventure-texte h2 { font-size:1.1rem; font-weight:700; margin-bottom:0.8rem; }
+.aventure-texte p { font-size:0.9rem; }
 
-    nav {
-      max-width: var(--max-width);
-      margin: auto;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-    }
+/* CONTACT */
+#contact { padding:3rem 1rem; background:#111; color:white; }
+.contact-container { max-width: var(--max-width); margin:auto; display:flex; gap:2rem; align-items:center; flex-wrap:wrap; }
+.contact-left, .contact-center, .contact-right { display:flex; flex-direction:column; justify-content:center; }
+.contact-left img { max-width:180px; }
+.contact-center { text-align:center; flex:1; }
+.contact-center a { color:white; text-decoration:underline; }
+.contact-right { display:flex; }
+.map-wrapper { display:flex; gap:0.5rem; align-items:center; }
+.map-wrapper iframe { width:360px; height:180px; border:0; border-radius:6px; flex-shrink:0; }
+.map-wrapper .photos { display:flex; flex-direction:column; gap:0.5rem; height:180px; justify-content:center; }
+.map-wrapper .photos img { width:auto; height:50%; object-fit:contain; border-radius:4px; }
 
-    nav strong {
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .nav-links a.active {
-      color: var(--red);
-    }
-
-    .burger {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    .btn {
-      background: var(--red);
-      color: white;
-      padding: 0.9rem 2.2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s ease;
-      box-shadow: 0 6px 0 var(--red-dark);
-    }
-
-    .btn:hover {
-      background: var(--red-dark);
-      transform: translateY(4px);
-      box-shadow: 0 2px 0 #700000;
-    }
-
-    /* ================= HERO ================= */
-    .hero {
-      margin-top: 70px;
-      position: relative;
-    }
-
-    .hero img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1.5rem;
-      background: rgba(0,0,0,0.35);
-    }
-
-    .hero-content {
-      max-width: 700px;
-    }
-
-    .hero-content .btn {
-      position: absolute;
-      right: 2rem;
-      top: 2rem;
-    }
-
-    /* Variante simple : bouton centré sous l’image si tu préfères
-    .hero-content .btn {
-      position: static;
-      margin-top: 1.5rem;
-    }
-    */
-
-    /* ================= AVANTURES ================= */
-    .aventures-section {
-      background: #fff;
-      padding: 3rem 1rem 4rem;
-    }
-
-    .aventures-container {
-      max-width: var(--max-width);
-      margin: auto;
-    }
-
-    .aventures-section h1 {
-      text-align: center;
-      font-size: 1.9rem;
-      margin-bottom: 2.5rem;
-      color: #111;
-    }
-
-    .aventure {
-      display: flex;
-      align-items: center;       /* centrage vertical image / texte */
-      justify-content: center;
-      gap: 3rem;
-      margin-bottom: 3rem;       /* espacement identique entre blocs */
-    }
-
-    .aventure:last-child {
-      margin-bottom: 0;
-    }
-
-    .aventure-image img {
-      display: block;
-      max-width: 340px;
-      width: 100%;
-      height: auto;
-    }
-
-    .aventure-texte {
-      max-width: 420px;
-      text-align: center;
-      color: #111;
-      font-size: 0.95rem;
-    }
-
-    .aventure-texte h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-    }
-
-    .aventure-texte p {
-      font-size: 0.9rem;
-    }
-
-    /* ================= CONTACT ================= */
-    #contact {
-      padding: 3rem 1rem;
-      background: #111;
-      color: white;
-    }
-
-    .contact-container {
-      max-width: var(--max-width);
-      margin: auto;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .contact-left img {
-      max-width: 180px;
-    }
-
-    .contact-center {
-      text-align: center;
-    }
-
-    .contact-center a {
-      color: white;
-      text-decoration: underline;
-    }
-
-    .contact-right iframe {
-      width: 360px;
-      height: 180px;
-      border: 0;
-      border-radius: 6px;
-    }
-
-    /* ================= MOBILE ================= */
-    @media (max-width: 1024px) {
-
-      .burger {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(0,0,0,0.95);
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 2rem 0;
-        transform: translateY(-120%);
-        transition: transform 0.3s ease;
-      }
-
-      .nav-links.open {
-        transform: translateY(0);
-      }
-
-      .hero-overlay {
-        position: static;
-        background: none;
-      }
-
-      .hero-content .btn {
-        position: static;
-        margin: 1.5rem auto 0;
-      }
-
-      .aventures-section {
-        padding-top: 2rem;
-      }
-
-      .aventure {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .aventure-image img {
-        margin: auto;
-      }
-
-      .contact-container {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-left img,
-      .contact-right iframe {
-        margin: auto;
-      }
-
-      .contact-right iframe {
-        width: 100%;
-        max-width: 360px;
-      }
-    }
-  </style>
+/* MOBILE */
+@media (max-width:1024px) {
+  .burger { display:block; }
+  .nav-links { position:absolute; top:100%; left:0; width:100%; background:rgba(0,0,0,0.95); flex-direction:column; align-items:center; gap:1.5rem; padding:2rem 0; transform:translateY(-120%); transition:transform 0.3s ease; }
+  .nav-links.open { transform:translateY(0); }
+  .hero-overlay { position:static; background:none; }
+  .hero-content .btn { position:static; margin:1.5rem auto 0; }
+  .aventures-section { padding-top:2rem; }
+  .aventure { flex-direction:column; gap:1.5rem; }
+  .aventure-image img { margin:auto; }
+  .contact-container { flex-direction:column; align-items:center; }
+  .map-wrapper { flex-direction:column; gap:1rem; }
+  .map-wrapper .photos { flex-direction:row; height:auto; }
+  .map-wrapper .photos img { width:50%; height:auto; }
+}
+</style>
 </head>
 
 <body>
-
 <header>
-  <nav>
-    <strong>L'Aventure Intérieure</strong>
-
-    <div class="burger" onclick="toggleMenu()">☰</div>
-
-    <div class="nav-links" id="menu">
-      <a href="index.html">Accueil</a>
-      <a href="concept.html">Concept</a>
-      <a href="aventures.html" class="active">Mes aventures</a>
-      <a href="avis.html">Avis</a>
-    </div>
-  </nav>
+<nav>
+  <strong>L'Aventure Intérieure</strong>
+  <div class="burger" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="menu">
+    <a href="index.html">Accueil</a>
+    <a href="concept.html">Concept</a>
+    <a href="aventures.html" class="active">Mes aventures</a>
+    <a href="avis.html">Avis</a>
+  </div>
+</nav>
 </header>
 
-<!-- Image de tête + bouton Suite de la visite -->
 <section class="hero">
   <img src="assets/I5.jpg" alt="Mes aventures">
   <div class="hero-overlay">
@@ -318,7 +103,6 @@
   </div>
 </section>
 
-<!-- Bloc des aventures -->
 <section class="aventures-section">
   <div class="aventures-container">
     <h1>Partons ensemble à l'Aventure</h1>
@@ -331,7 +115,6 @@
       <div class="aventure-texte">
         <h2>24h sur les chemins de Compostelle</h2>
         <p>
-          <!-- Texte à coller ici exactement comme sur la capture -->
           Au départ du Puy-en-Velay, nous allons marcher, sac au dos, sur le mythique chemin de Saint Jacques de Compostelle, et vivre l'expérience d'un pèlerin.<br><br>
           Après l'acquisition de la crédentiale à la cathédrale du Puy, nous partons à la découverte de la campagne française, ses vallées et ses monts, durant deux demi-journées de marche, puis rencontrons d'autres pèlerins à l'étape...<br><br>
           La suite et la surprise vous seront dévoilées lors de la séance.
@@ -347,7 +130,6 @@
       <div class="aventure-texte">
         <h2>Plongée sur la grande barrière de corail</h2>
         <p>
-          <!-- Texte à coller depuis la capture -->
           Après avoir atterri en Australie, nous prenons la mer à bord d'un voilier pour rejoindre Green Island.<br><br>
           Vêtus de nos combinaisons de plongée, nous allons rejoindre les dauphins qui seront nos guides et protecteurs.<br><br>
           Ils nous emmènent admirer la barrière de corail, ses poissons exotiques, ses tortues, sa flore sous-marine et les spectacles émouvants offerts par les baleines...<br><br>
@@ -364,7 +146,6 @@
       <div class="aventure-texte">
         <h2>Les mystères de l'Égypte antique</h2>
         <p>
-          <!-- Texte à coller depuis la capture -->
           Après avoir atterri au Caire, nous embarquons sur une felouque et rejoignons le plateau de Gizeh via le Nil.<br><br>
           À dos de dromadaire, nous gagnons la grande pyramide de Khéops et le Sphinx.<br><br>
           Nous explorons les chambres et couloirs de la pyramide, quand soudain...<br><br>
@@ -381,7 +162,6 @@
       <div class="aventure-texte">
         <h2>Stage de magie à Poudlard</h2>
         <p>
-          <!-- Texte à coller depuis la capture -->
           À bord du Poudlard Express, vous rejoignez l'école de Poudlard, en compagnie d'un sorcier expérimenté, pour y apprendre l'art mystérieux de la magie.<br><br>
           Dans une des 4 maisons, vous apprendrez à manier votre baguette pour lancer des sorts puissants.<br><br>
           Sur votre balai, vous vivrez des expériences inoubliables et découvrirez certains mystères de cette école légendaire.
@@ -392,13 +172,11 @@
   </div>
 </section>
 
-<!-- Bandeau Contact identique -->
 <section id="contact">
   <div class="contact-container">
     <div class="contact-left">
       <img src="assets/I3.png" alt="Bon cadeau">
     </div>
-
     <div class="contact-center">
       <h2>Contact & Réservation</h2>
       <p>
@@ -407,21 +185,20 @@
         Email : <a href="mailto:philippe.winkin@gmail.com">philippe.winkin@gmail.com</a>
       </p>
     </div>
-
     <div class="contact-right">
-      <iframe
-        src="https://www.google.com/maps?q=27%20rue%20des%20imprimeurs%204801%20Stembert&output=embed"
-        loading="lazy">
-      </iframe>
+      <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps?q=27%20rue%20des%20imprimeurs%204801%20Stembert&output=embed" loading="lazy"></iframe>
+        <div class="photos">
+          <img src="assets/F1.jpg" alt="Photo F1">
+          <img src="assets/F2.jpg" alt="Photo F2">
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  function toggleMenu() {
-    document.getElementById('menu').classList.toggle('open');
-  }
+function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
 </script>
-
 </body>
 </html>
