@@ -164,7 +164,7 @@
     .replace(/^-|-$/g, "");
 
   // Incrémentation et affichage du compteur
-  fetch(`https://api.countify.xyz/increment/${SITE_ID}`)
+  fetch(`https://api.countify.xyz/increment/${SITE_ID}?cb=${Date.now()}`)
     .then(() => fetch(`https://api.countify.xyz/get-total/${SITE_ID}`))
     .then(res => res.json())
     .then(data => {
