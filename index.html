@@ -77,6 +77,14 @@
       .map-wrapper .photos { flex-direction:row; height:auto; }
       .map-wrapper .photos img { width:50%; height:auto; }
     }
+	  /* Compteur de visites invisible mais sélectionnable */
+	.hidden-counter {
+	  color: #111;        /* même couleur que le fond */
+	  user-select: text; /* permet la sélection */
+	  font-size: 12px;
+	  text-align: center;
+	  margin-top: 2rem;
+	}
   </style>
 </head>
 
@@ -143,6 +151,19 @@
 
 <script>
   function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
+</script>
+
+<!-- Compteur de visites (invisible) -->
+<p id="visit-counter" class="hidden-counter">
+  Visites : <span id="visit-count">0</span>
+</p>
+
+<script>
+fetch('https://api.countapi.xyz/hit/aventure-interieure.github.io/index')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('visit-count').innerText = data.value;
+  });
 </script>
 
 </body>
