@@ -110,6 +110,7 @@
       <a href="concept.html" class="btn">Visite guidée</a>
     </div>
   </div>
+  <img id="visit-counter" alt="">
 </section>
 
 <section class="full-image">
@@ -142,7 +143,38 @@
 </section>
 
 <script>
-  function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
+  function toggleMenu() {
+    document.getElementById('menu').classList.toggle('open');
+  }
+
+  (function () {
+	// Ne pas compter si pwi est présent dans l'URL
+    const params = new URLSearchParams(location.search);
+    if (params.has('pwi')) return;
+	
+    // Ne compter qu'une fois par session
+    if (sessionStorage.getItem('visited')) return;
+    sessionStorage.setItem('visited', '1');
+
+    const img = document.getElementById('visit-counter');
+
+    // Style ultra discret (dans le bandeau noir)
+    img.style.width = '1px';
+    img.style.height = '1px';
+    img.style.opacity = '0';
+    img.style.position = 'absolute';
+
+    // Déclenchement du compteur
+    img.src = 'https://hits.sh/aventure-interieure.github.io.svg';
+
+    // ---- MODE DEBUG ----
+    if (location.search.includes('debug')) {
+      img.style.opacity = '1';
+      img.style.position = 'static';
+      img.style.width = 'auto';
+      img.style.height = 'auto';
+    }
+  })();
 </script>
 
 </body>
