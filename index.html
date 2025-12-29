@@ -50,7 +50,7 @@
       margin:auto; 
       display:flex; 
       gap:2rem; 
-      align-items:center; /* <-- centre vertical */
+      align-items:center; 
       flex-wrap:wrap; 
     }
     .contact-left, .contact-center, .contact-right { display:flex; flex-direction:column; justify-content:center; }
@@ -76,6 +76,23 @@
       .map-wrapper { flex-direction:column; gap:1rem; }
       .map-wrapper .photos { flex-direction:row; height:auto; }
       .map-wrapper .photos img { width:50%; height:auto; }
+    }
+
+    /* DEBUG BADGE */
+    #debug-badge {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--red);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      z-index: 9999;
+      cursor: default;
+      font-family: 'Montserrat', sans-serif;
     }
   </style>
 </head>
@@ -148,12 +165,19 @@
   }
 
   (function () {
-    // ❌ Ne rien faire si ouvert en local
     if (location.protocol === 'file:') return;
 
     const params = new URLSearchParams(location.search);
     const isPwi = params.has('pwi');
     const isDebug = params.has('debug');
+
+    // Badge debug
+    if (isDebug) {
+      const badge = document.createElement('div');
+      badge.id = 'debug-badge';
+      badge.textContent = 'DEBUG MODE';
+      document.body.appendChild(badge);
+    }
 
     // Ne compter qu'une fois par session (sauf en debug/pwi)
     if (!isPwi && !isDebug) {
@@ -170,23 +194,9 @@
     img.style.opacity = '0';
     img.style.position = 'absolute';
 
-    // URL hits.sh
     let src = 'https://hits.sh/aventure-interieure.github.io.svg';
-
-    // ➕ pwi → ne pas incrémenter
-    if (isPwi) {
-      src += '?pwi=1';
-    }
-
+    if (isPwi) src += '?pwi=1';
     img.src = src;
-
-    // ---- MODE DEBUG ----
-    if (isDebug) {
-      img.style.opacity = '1';
-      img.style.position = 'static';
-      img.style.width = 'auto';
-      img.style.height = 'auto';
-    }
   })();
 </script>
 
