@@ -163,41 +163,54 @@
   function toggleMenu() {
     document.getElementById('menu').classList.toggle('open');
   }
+(function () {
+  if (location.protocol === 'file:') return;
 
-  (function () {
-    if (location.protocol === 'file:') return;
+  const params = new URLSearchParams(location.search);
+  const isPwi = params.has('pwi');
+  const isDebug = params.has('debug');
 
-    const params = new URLSearchParams(location.search);
-    const isPwi = params.has('pwi');
-    const isDebug = params.has('debug');
+  // Badge debug
+  if (isDebug) {
+    const badge = document.createElement('div');
+    badge.id = 'debug-badge';
+    badge.textContent = 'DEBUG MODE';
+    document.body.appendChild(badge);
+  }
 
-    // Badge debug
-    if (isDebug) {
-      const badge = document.createElement('div');
-      badge.id = 'debug-badge';
-      badge.textContent = 'DEBUG MODE';
-      document.body.appendChild(badge);
-    }
+  const img = document.getElementById('visit-counter');
+  if (!img) return;
 
-    // Ne compter qu'une fois par session (sauf en debug/pwi)
-    if (!isPwi && !isDebug) {
-      if (sessionStorage.getItem('visited')) return;
-      sessionStorage.setItem('visited', '1');
-    }
+  // Style discret par défaut
+  img.style.width = '1px';
+  img.style.height = '1px';
+  img.style.opacity = '0';
+  img.style.position = 'absolute';
 
-    const img = document.getElementById('visit-counter');
-    if (!img) return;
+  // URL hits.sh
+  let src = 'https://hits.sh/aventure-interieure.github.io.svg';
 
-    // Style discret par défaut
-    img.style.width = '1px';
-    img.style.height = '1px';
-    img.style.opacity = '0';
-    img.style.position = 'absolute';
+  // Si pwi ou debug → ne pas incrémenter mais montrer l'image
+  if (isPwi || isDebug) {
+    src += '?pwi=1'; // hits.sh ne compte pas si pwi=1
+    img.style.opacity = '1';
+    img.style.position = 'fixed';
+    img.style.bottom = '1rem';
+    img.style.right = '1rem';
+    img.style.width = 'auto';
+    img.style.height = 'auto';
+    img.style.zIndex = '9999';
+  }
 
-    let src = 'https://hits.sh/aventure-interieure.github.io.svg';
-    if (isPwi) src += '?pwi=1';
-    img.src = src;
-  })();
+  img.src = src;
+
+  // Ne compter qu'une fois par session si pas pwi/debug
+  if (!isPwi && !isDebug) {
+    if (sessionStorage.getItem('visited')) return;
+    sessionStorage.setItem('visited', '1');
+  }
+})();
+
 </script>
 
 </body>
