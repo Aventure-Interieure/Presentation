@@ -187,12 +187,8 @@
   img.style.opacity = '0';
   img.style.position = 'absolute';
 
-  // URL hits.sh
-  let src = 'https://hits.sh/aventure-interieure.github.io.svg';
-
-  // Si pwi ou debug → ne pas incrémenter mais montrer l'image
-  if (isPwi || isDebug) {
-    src += '?pwi=1'; // hits.sh ne compte pas si pwi=1
+  if (isDebug || isPwi) {
+    // DEBUG / PWI → montrer image mais ne pas incrémenter
     img.style.opacity = '1';
     img.style.position = 'fixed';
     img.style.bottom = '1rem';
@@ -200,14 +196,15 @@
     img.style.width = 'auto';
     img.style.height = 'auto';
     img.style.zIndex = '9999';
-  }
-
-  img.src = src;
-
-  // Ne compter qu'une fois par session si pas pwi/debug
-  if (!isPwi && !isDebug) {
-    if (sessionStorage.getItem('visited')) return;
-    sessionStorage.setItem('visited', '1');
+    
+    // Charger un SVG local / dummy pour debug
+    img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="20"><rect width="100" height="20" fill="red"/><text x="50" y="15" fill="white" font-size="12" font-family="Montserrat" text-anchor="middle">DEBUG</text></svg>';
+  } else {
+    // Mode normal → incrémenter compteur
+    if (!sessionStorage.getItem('visited')) {
+      sessionStorage.setItem('visited', '1');
+      img.src = 'https://hits.sh/aventure-interieure.github.io.svg';
+    }
   }
 })();
 
