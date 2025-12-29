@@ -148,27 +148,40 @@
   }
 
   (function () {
-	// Ne pas compter si pwi est présent dans l'URL
+    // ❌ Ne rien faire si ouvert en local
+    if (location.protocol === 'file:') return;
+
     const params = new URLSearchParams(location.search);
-    if (params.has('pwi')) return;
-	
-    // Ne compter qu'une fois par session
-    if (sessionStorage.getItem('visited')) return;
-    sessionStorage.setItem('visited', '1');
+    const isPwi = params.has('pwi');
+    const isDebug = params.has('debug');
+
+    // Ne compter qu'une fois par session (sauf en debug/pwi)
+    if (!isPwi && !isDebug) {
+      if (sessionStorage.getItem('visited')) return;
+      sessionStorage.setItem('visited', '1');
+    }
 
     const img = document.getElementById('visit-counter');
+    if (!img) return;
 
-    // Style ultra discret (dans le bandeau noir)
+    // Style discret par défaut
     img.style.width = '1px';
     img.style.height = '1px';
     img.style.opacity = '0';
     img.style.position = 'absolute';
 
-    // Déclenchement du compteur
-    img.src = 'https://hits.sh/aventure-interieure.github.io.svg';
+    // URL hits.sh
+    let src = 'https://hits.sh/aventure-interieure.github.io.svg';
+
+    // ➕ pwi → ne pas incrémenter
+    if (isPwi) {
+      src += '?pwi=1';
+    }
+
+    img.src = src;
 
     // ---- MODE DEBUG ----
-    if (location.search.includes('debug')) {
+    if (isDebug) {
       img.style.opacity = '1';
       img.style.position = 'static';
       img.style.width = 'auto';
