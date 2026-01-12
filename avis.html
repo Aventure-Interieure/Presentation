@@ -173,7 +173,7 @@ document.querySelector('.next').onclick = () => { current = (current+1)%quotes.l
 document.querySelector('.prev').onclick = () => { current = (current-1+quotes.length)%quotes.length; showQuote(current); }
 
 showQuote(0);
-setInterval(()=>{ current=(current+1)%quotes.length; showQuote(current); },15000);
+setInterval(()=>{ current=(current+1)%quotes.length; showQuote(current); },20000);
 </script>
 
 </body>
