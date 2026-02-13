@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aventure-interieure.github.io/Presentation/sitemap.xml
